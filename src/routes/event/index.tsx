@@ -62,9 +62,10 @@ const Event = ({ eventKey }: Props) => (
   <LoadData
     data={{
       matches: () => getEventMatches(eventKey),
-      eventInfo: () => getEventInfo(eventKey),
+      eventInfo: () => getEventInfo(eventKey).fastest,
       eventStats: () => getEventStats(eventKey),
-      schema: () => getEventInfo(eventKey).then(e => getSchema(e.schemaId)),
+      schema: () =>
+        getEventInfo(eventKey).fastest.then(e => getSchema(e.schemaId).fastest),
     }}
     renderSuccess={({ matches, eventInfo, eventStats, schema }) => (
       <Page

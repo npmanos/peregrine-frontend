@@ -8,7 +8,7 @@ import { getEvents } from '@/api/event-info/get-events'
 const Home = () => (
   <Page name="Home">
     <LoadData
-      data={{ events: getEvents }}
+      data={{ events: () => getEvents().fastest }}
       renderSuccess={({ events }) => (
         <div>
           {events ? (
