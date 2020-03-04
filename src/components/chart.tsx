@@ -23,6 +23,8 @@ import { getMatchTeamReports } from '@/api/report/get-match-team-reports'
 import { CommentCard } from './comment-card'
 import { cleanFieldName } from '@/utils/clean-field-name'
 import { getFieldKey } from '@/utils/get-field-key'
+import { MatchReportsList } from './match-reports-list'
+import { GetReport } from '@/api/report'
 
 const commentsDisplayStyle = css`
   grid-column: 1 / -1;
@@ -30,21 +32,7 @@ const commentsDisplayStyle = css`
   grid-gap: 1.2rem;
 `
 
-const CommentsDisplay = ({
-  team,
-  match,
-  event,
-}: {
-  team: string
-  match: string
-  event: string
-}) => {
-  const reports = usePromise(() => getMatchTeamReports(event, match, team), [
-    event,
-    match,
-    team,
-  ])
-  if (!reports) return null
+const CommentsDisplay = ({ reports }: { reports: GetReport[] }) => {
   return (
     <div class={commentsDisplayStyle}>
       {reports.map(
@@ -129,8 +117,16 @@ export const ChartCard = ({
 
   const dataPoints = matchesWithSelectedStat.map(s => s.matchingStat.avg)
 
-  const hoveredMatchKey =
+  const selectedMatchKey =
     selectedIndex !== null && matchesWithSelectedStat[selectedIndex].matchKey
+
+  const reports = usePromise(
+    () =>
+      selectedMatchKey
+        ? getMatchTeamReports(eventKey, selectedMatchKey, team)
+        : CancellablePromise.resolve([]),
+    [eventKey, selectedMatchKey, team],
+  )
 
   const handleClick = (event: MouseEvent) => {
     if (!(event.target as Element).closest(`.${point}`)) setSelectedIndex(null)
@@ -193,16 +189,18 @@ export const ChartCard = ({
               <a
                 href={`/events/${eventKey}/matches/${matchesWithSelectedStat[selectedIndex].matchKey}`}
               >
-                {formatMatchKeyShort(hoveredMatchKey as string)}
+                {formatMatchKeyShort(selectedMatchKey as string)}
               </a>
             </p>
           )}
         </div>
-        {selectedIndex !== null && (
-          <CommentsDisplay
-            match={matchesWithSelectedStat[selectedIndex].matchKey}
-            event={eventKey}
-            team={team}
+        {reports && <CommentsDisplay reports={reports} />}
+        {reports && selectedMatchKey && (
+          <MatchReportsList
+            reports={reports}
+            eventKey={eventKey}
+            matchKey={selectedMatchKey}
+            schema={schema}
           />
         )}
       </div>

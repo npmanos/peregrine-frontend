@@ -36,6 +36,9 @@ interface Props {
   /** Callback to be called whenever the report is saved */
   onSaveSuccess?: () => void
   initialReport?: Report
+  /** Whether the field cards should have an outline rather than a shadow */
+  outlinedCards?: boolean
+  showSave?: boolean
 }
 
 const emptyReport: Report = {
@@ -59,6 +62,8 @@ export const ReportEditor = ({
   match,
   onSaveSuccess = noop,
   initialReport = emptyReport,
+  outlinedCards = false,
+  showSave,
 }: Props) => {
   const [team, setTeam] = useState<string | null>(null)
   const [isSaving, setIsSaving] = useState<boolean>(false)
@@ -119,8 +124,6 @@ export const ReportEditor = ({
 
   return (
     <form class={scoutStyles} onSubmit={onSubmit}>
-      <h1>Scout {team && formatTeamNumber(team)}</h1>
-
       <TeamPicker
         onChange={setTeam}
         blueAlliance={match.blueAlliance}
@@ -133,6 +136,7 @@ export const ReportEditor = ({
           statDescription={stat}
           value={getReportFieldValue(stat)}
           onChange={updateReportField(stat.reportReference)}
+          outlined={outlinedCards}
         />
       ))}
       <h2>Teleop</h2>
@@ -142,6 +146,7 @@ export const ReportEditor = ({
           statDescription={stat}
           value={getReportFieldValue(stat)}
           onChange={updateReportField(stat.reportReference)}
+          outlined={outlinedCards}
         />
       ))}
       <TextInput
@@ -149,9 +154,11 @@ export const ReportEditor = ({
         label="Comments"
         onInput={comment => setReport(r => ({ ...r, comment }))}
       />
-      <Button disabled={isSaving || !isReady} class={buttonStyles}>
-        {isSaving ? 'Saving Report' : 'Save Report'}
-      </Button>
+      {showSave && (
+        <Button disabled={isSaving || !isReady} class={buttonStyles}>
+          {isSaving ? 'Saving Report' : 'Save Report'}
+        </Button>
+      )}
     </form>
   )
 }

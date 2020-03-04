@@ -23,11 +23,13 @@ const dialogStyle = css`
   background: white;
   box-shadow: ${createShadow(24)};
   border-radius: 4px;
-  overflow: hidden;
+  overflow: hidden auto;
+  max-height: calc(100vh - 5rem);
   min-width: 13rem;
   transition: inherit;
   transition-timing-function: cubic-bezier(0.15, 0.24, 0.13, 1.42);
   will-change: transform, opacity;
+  outline: none;
 
   .${scrimHiddenClass} & {
     transform: scale(0.7);
@@ -40,14 +42,13 @@ const dialogStyle = css`
     padding-right: ${pxToRem(24)};
   }
 
-  & > *:not(:last-child) {
-    margin: 1rem 0;
-  }
-
-  h1,
-  h2 {
+  h1 {
     font-size: ${pxToRem(20)};
     font-weight: 500;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    background: inherit;
   }
 
   p {
@@ -60,6 +61,9 @@ const actionsStyle = css`
   padding: ${pxToRem(8)};
   display: flex;
   justify-content: flex-end;
+  position: sticky;
+  bottom: 0;
+  background: inherit;
 
   & *:not(:first-child) {
     margin-left: ${pxToRem(8)};

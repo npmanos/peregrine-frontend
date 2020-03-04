@@ -7,6 +7,7 @@ import { useSchema } from '@/cache/schema/use'
 import { useEventInfo } from '@/cache/event-info/use'
 import { ReportEditor } from '@/components/report-editor'
 import { route } from '@/router'
+import { formatMatchKeyShort } from '@/utils/format-match-key-short'
 
 interface Props {
   eventKey: string
@@ -22,7 +23,10 @@ const ScoutPage = ({ eventKey, matchKey }: Props) => {
     <Authenticated
       label="Log In to Scout"
       render={() => (
-        <Page name="Scout" back={`/events/${eventKey}/matches/${matchKey}`}>
+        <Page
+          name={`Scout ${formatMatchKeyShort(matchKey)}`}
+          back={`/events/${eventKey}/matches/${matchKey}`}
+        >
           {match && schema ? (
             <ReportEditor
               eventKey={eventKey}

@@ -23,6 +23,7 @@ interface Props<FieldType extends ReportStatDescription> {
   statDescription: FieldType
   value: number
   onChange: (newValue: number) => void
+  outlined: boolean
 }
 
 const isNumberField = (
@@ -33,8 +34,9 @@ const FieldCard = <FieldType extends ReportStatDescription>({
   statDescription,
   onChange,
   value,
+  outlined,
 }: RenderableProps<Props<FieldType>>) => (
-  <Card as="label" class={fieldCardStyle}>
+  <Card as="label" class={fieldCardStyle} outlined={outlined}>
     <div class={nameStyle}>{cleanFieldName(statDescription.name)}</div>
     {isNumberField(statDescription) ? (
       <NumberInput value={value} min={0} onChange={onChange} />
