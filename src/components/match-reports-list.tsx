@@ -5,6 +5,7 @@ import { useMatchInfo } from '@/cache/match-info/use'
 import { Schema } from '@/api/schema'
 import Button from './button'
 import { createDialog } from './dialog'
+import { formatMatchKeyShort } from '@/utils/format-match-key-short'
 
 interface Props {
   reports: GetReport[]
@@ -31,7 +32,7 @@ export const MatchReportsList = ({
             e.stopPropagation()
 
             createDialog({
-              title: 'Edit report',
+              title: `Edit report: ${formatMatchKeyShort(matchInfo.key)}`,
               description: (
                 // TODO: Extract a subcomponent from reporteditor
                 // that does not have saving functionality,
