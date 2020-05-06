@@ -5,7 +5,6 @@ module.exports = {
     ['@babel/preset-modules', { loose: true }],
   ],
   plugins: [
-    'preact-refresh/babel',
     process.env.NODE_ENV === 'production' &&
       './babel-plugin-remove-preact-debug',
     process.env.NODE_ENV !== 'production' &&
