@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const postcssConfig = require('./postcss.config')
 const WebpackBar = require('webpackbar')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-const PreactRefreshPlugin = require('preact-refresh')
+const PreactRefreshPlugin = require('@prefresh/webpack')
 
 require('dotenv').config()
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
@@ -76,8 +76,8 @@ module.exports = {
       meta: { viewport: 'width=device-width, initial-scale=1.0' },
     }),
     new MiniCssExtractPlugin({ filename: 'styles.css' }),
+    new webpack.HotModuleReplacementPlugin(),
     new PreactRefreshPlugin(),
-    new webpack.HotModuleReplacementPlugin({}),
     new WebpackBar(),
     new FriendlyErrorsWebpackPlugin(),
     // new BundleAnalyzerPlugin(),
