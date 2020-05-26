@@ -1,4 +1,4 @@
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { PropsOf } from '@/type-utils'
 import { h } from 'preact'
 import clsx from 'clsx'

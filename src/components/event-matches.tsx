@@ -5,7 +5,7 @@ import { compareMatches as compareMatchesChronologically } from '@/utils/compare
 import { MatchCard } from './match-card'
 import Spinner from './spinner'
 import { useState } from 'preact/hooks'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { formatMatchKey } from '@/utils/format-match-key'
 
 interface Props {

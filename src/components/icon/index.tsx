@@ -1,5 +1,5 @@
 import { h, JSX } from 'preact'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 
 interface Props extends JSX.HTMLAttributes<SVGSVGElement> {
   icon: string

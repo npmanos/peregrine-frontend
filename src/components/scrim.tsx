@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { rgba } from 'polished'
 import clsx from 'clsx'
 import { useRef, useEffect } from 'preact/hooks'

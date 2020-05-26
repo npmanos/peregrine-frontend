@@ -1,4 +1,4 @@
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { greenOnPurple, redOnPurple, focusRing } from '@/colors'
 import { FunctionComponent, JSX, h } from 'preact'
 import { Merge } from 'type-fest'

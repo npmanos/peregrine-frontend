@@ -1,6 +1,6 @@
 import { h, JSX } from 'preact'
 import clsx from 'clsx'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { offBlack } from '@/colors'
 
 const alertStyle = css`

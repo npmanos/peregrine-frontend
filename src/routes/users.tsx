@@ -15,7 +15,7 @@ import {
   createBooleanColumn,
 } from '@/components/table'
 import Card from '@/components/card'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { getRealms } from '@/api/realm/get-realms'
 import { Realm } from '@/api/realm'
 import { usePromise } from '@/utils/use-promise'

@@ -5,7 +5,7 @@ import { getEventStats } from '@/api/stats/get-event-stats'
 import { useEventInfo } from '@/cache/event-info/use'
 import AnalysisTable from '@/components/analysis-table'
 import Spinner from '@/components/spinner'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { useSchema } from '@/cache/schema/use'
 import {
   tablePageStyle,

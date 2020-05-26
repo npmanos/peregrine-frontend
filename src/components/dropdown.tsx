@@ -1,4 +1,4 @@
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { h, JSX } from 'preact'
 import clsx from 'clsx'
 import { createShadow } from '@/utils/create-shadow'

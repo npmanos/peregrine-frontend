@@ -1,5 +1,5 @@
 import { h, JSX, ComponentChildren } from 'preact'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { Merge } from '@/type-utils'
 import { useRef } from 'preact/hooks'
 import clsx from 'clsx'

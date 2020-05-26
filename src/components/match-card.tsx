@@ -3,7 +3,7 @@ import { formatMatchKey } from '@/utils/format-match-key'
 import { formatTime } from '@/utils/format-time'
 import { formatTeamNumber } from '@/utils/format-team-number'
 import Card from '@/components/card'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { memo } from '@/utils/memo'
 
 interface MatchCardProps {

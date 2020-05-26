@@ -1,4 +1,4 @@
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { pxToRem } from '@/utils/px-to-rem'
 import { rgba, darken } from 'polished'
 import { h } from 'preact'

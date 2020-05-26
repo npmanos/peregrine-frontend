@@ -1,7 +1,7 @@
 import { h, RenderableProps } from 'preact'
 import Card from '@/components/card'
 import NumberInput from './number-input'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import Toggle from './toggle'
 import { ReportStatDescription, NumberStatDescription } from '@/api/schema'
 import { cleanFieldName } from '@/utils/clean-field-name'

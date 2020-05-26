@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import Chip, { DateChip } from '@/components/chip'
 import Card from '@/components/card'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 
 type Props = {
   event: {

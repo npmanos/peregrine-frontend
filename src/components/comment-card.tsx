@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { GetReport } from '@/api/report'
 import { usePromise } from '@/utils/use-promise'
 import { getUser } from '@/api/user/get-user'

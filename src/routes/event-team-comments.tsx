@@ -2,7 +2,7 @@
 import { h } from 'preact'
 import Page from '@/components/page'
 import { useEventInfo } from '@/cache/event-info/use'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import Card from '@/components/card'
 import Spinner from '@/components/spinner'
 import { usePromise } from '@/utils/use-promise'

@@ -1,6 +1,6 @@
 import { Component, h, RenderableProps, createContext } from 'preact'
 import Alert from '../alert'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { useContext } from 'preact/hooks'
 
 interface State {

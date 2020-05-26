@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { useEffect, useState } from 'preact/hooks'
 
 const spinnerStyle = css`

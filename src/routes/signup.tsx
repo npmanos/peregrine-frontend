@@ -11,7 +11,7 @@ import {
   maxPasswordLength,
 } from '@/constants'
 import { useState } from 'preact/hooks'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { Form } from '@/components/form'
 import { Dropdown } from '@/components/dropdown'
 import { getRealms } from '@/api/realm/get-realms'

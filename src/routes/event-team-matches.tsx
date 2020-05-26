@@ -4,7 +4,7 @@ import { useEventInfo } from '@/cache/event-info/use'
 import { useEventMatches } from '@/cache/event-matches/use'
 import { EventMatches } from '@/components/event-matches'
 import Spinner from '@/components/spinner'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 
 interface Props {
   eventKey: string

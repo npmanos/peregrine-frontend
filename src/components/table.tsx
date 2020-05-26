@@ -1,6 +1,6 @@
 import { h, JSX, RenderableProps } from 'preact'
 import { useState } from 'preact/hooks'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { lightGrey, faintGrey, pigmicePurple } from '@/colors'
 import clsx from 'clsx'
 import { BooleanDisplay } from './boolean-display'

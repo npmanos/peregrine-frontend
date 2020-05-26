@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { css } from 'linaria'
+import { css } from 'static-css-extract'
 import { lightGrey, pigmicePurple, grey } from '@/colors'
 import { tint, shade, transparentize } from 'polished'
 import { createShadow } from '@/utils/create-shadow'
