@@ -1,8 +1,11 @@
-import { styled } from 'linaria-styled-preact'
+import { css } from 'linaria'
 import { pxToRem } from '@/utils/px-to-rem'
 import { rgba, darken } from 'polished'
+import { h } from 'preact'
+import { PropsOf } from '@/type-utils'
+import clsx from 'clsx'
 
-export const TextButton = styled.button`
+const buttonStyle = css`
   background: transparent;
   border: none;
   text-transform: uppercase;
@@ -27,3 +30,7 @@ export const TextButton = styled.button`
     background: ${rgba('purple', 0.18)};
   }
 `
+
+export const TextButton = (props: PropsOf<'button'>) => {
+  return <button {...props} class={clsx(buttonStyle, props.class)} />
+}
