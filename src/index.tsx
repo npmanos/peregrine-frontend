@@ -2,7 +2,7 @@ import App from '@/app'
 import { cleanupTokens } from '@/jwt'
 import { render, h } from 'preact'
 
-if (process.env.NODE_ENV === 'development') {
+if (__NODE_ENV__ === 'development') {
   // @ts-ignore
   if (module.hot) module.hot.accept()
 
@@ -18,6 +18,6 @@ cleanupTokens()
 
 render(<App />, el)
 
-if ('serviceWorker' in navigator && process.env.ROLLUP === 'true') {
+if ('serviceWorker' in navigator && __ROLLUP__ === 'true') {
   navigator.serviceWorker.register('/sw.js')
 }

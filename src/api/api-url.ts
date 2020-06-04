@@ -1,5 +1,5 @@
-const isNetlify = process.env.NODE_ENV === 'production' && process.env.BRANCH
+const isNetlify = __NODE_ENV__ === 'production' && __BRANCH__
 
 export const apiUrl =
-  (process.env.PEREGRINE_API_URL ||
-    (isNetlify ? '/api' : 'https://peregrine.ga/api')) + '/'
+  (__PEREGRINE_API_URL__ || (isNetlify ? '/api' : 'https://peregrine.ga/api')) +
+  '/'

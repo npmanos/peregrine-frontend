@@ -9,15 +9,11 @@ declare const module: {
   }
 }
 
-declare const process: {
-  env: {
-    NODE_ENV?: string
-    PEREGRINE_API_URL?: string
-    IPDATA_API_KEY?: string
-    BRANCH?: string
-    ROLLUP?: 'true' | 'false'
-  }
-}
+declare const __NODE_ENV__: string
+declare const __PEREGRINE_API_URL__: string
+declare const __IPDATA_API_KEY__: string
+declare const __BRANCH__: string
+declare const __ROLLUP__: 'true' | 'false'
 
 declare module 'preact/debug' {}
 

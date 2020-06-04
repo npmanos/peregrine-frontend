@@ -173,6 +173,18 @@ const teamRankStyle = css`
   color: ${grey};
 `
 
+const rankCellStyle = css`
+  white-space: nowrap;
+  text-align: center;
+  min-width: 5.5rem;
+
+  & :not(:first-child) {
+    padding-left: 0.25rem;
+    font-size: 0.7rem;
+    color: ${textGrey};
+  }
+`
+
 const AnalysisTable = ({
   eventKey,
   teams,
@@ -209,18 +221,6 @@ const AnalysisTable = ({
     },
     sortOrder: SortOrder.ASC,
   }
-
-  const rankCellStyle = css`
-    white-space: nowrap;
-    text-align: center;
-    min-width: 5.5rem;
-
-    & :not(:first-child) {
-      padding-left: 0.25rem;
-      font-size: 0.7rem;
-      color: ${textGrey};
-    }
-  `
 
   const rankColumn: Column<EventTeamInfo | undefined, RowType> = {
     title: 'Rank',

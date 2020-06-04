@@ -1,11 +1,12 @@
-import linaria from 'linaria-preact/rollup'
 import node from '@rollup/plugin-node-resolve'
+import replace from '@rollup/plugin-replace'
+import css from 'static-css-extract/rollup'
+import esbuild from 'rollup-plugin-esbuild'
 import { terser } from 'rollup-plugin-terser'
 import { getBabelInputPlugin, getBabelOutputPlugin } from '@rollup/plugin-babel'
 import postcss from 'rollup-plugin-postcss'
 import netlifyPush, { printPush } from 'rollup-plugin-netlify-push'
 import parseRoutes from 'rollup-plugin-netlify-push/parse-routes'
-import { apiUrl } from './src/api/api-url.ts'
 import crypto from 'crypto'
 import { promisify } from 'util'
 import { writeFile, readFile } from 'fs'
@@ -48,6 +49,24 @@ const chunksFile = path.join(outDir, 'chunks.json')
 
 mkdirplz(outDir)
 
+/**
+ * @returns {import('rollup').Plugin}
+ */
+const rewriteImports = () => {
+  return {
+    name: 'rollup-plugin-rewrite-imports',
+    resolveId(source, importer) {
+      const match = source.match(/^@.*\//)
+      if (!match) return null
+      return this.resolve(
+        source.replace(/^@/, path.join(__dirname, 'src')),
+        importer,
+        true,
+      )
+    },
+  }
+}
+
 export default [
   {
     input: './src/index.tsx',
@@ -61,7 +80,6 @@ export default [
     preserveEntrySignatures: false,
     plugins: [
       node(rollupNodeOptions),
-      linaria({ sourceMap: false }),
       postcss({
         extract: path.resolve('./dist/style.css'),
         modules: cssModulesConfig,
@@ -75,14 +93,24 @@ export default [
         config: false,
         minimize: { zindex: false },
       }),
-      getBabelInputPlugin({
-        extensions,
-        babelHelpers: 'bundled',
-        babelrc: false,
-        ...babelConfig,
+      rewriteImports(),
+      replace({
+        __NODE_ENV__: process.env.NODE_ENV,
+        __PEREGRINE_API_URL__: process.env.PEREGRINE_API_URL,
+        __IPDATA_API_KEY__: process.env.IPDATA_API_KEY,
+        __BRANCH__: process.env.BRANCH,
+        __ROLLUP__: process.env.ROLLUP,
       }),
-      getBabelOutputPlugin({ babelrc: false, ...babelConfigProd }),
-      terser(terserOptions(prod)),
+      esbuild({ target: 'es2019', jsxFactory: 'h' }),
+      // getBabelInputPlugin({
+      //   extensions,
+      //   babelHelpers: 'inline',
+      //   babelrc: false,
+      //   ...babelConfig,
+      // }),
+      css(),
+      // getBabelOutputPlugin({ babelrc: false, ...babelConfigProd }),
+      // terser(terserOptions(prod)),
       netlifyPush({
         getRoutes: () => parseRoutes('./src/routes.ts'),
         resolveFrom: './src/routes.ts',
@@ -93,7 +121,7 @@ export default [
         name: 'rollup-write-html',
         async writeBundle() {
           const htmlSrc = await readFileAsync('rollup-index.html', 'utf8')
-          const htmlOut = templite(htmlSrc, { apiUrl })
+          const htmlOut = templite(htmlSrc, { apiUrl: '/api' })
           writeFileAsync(path.join(outDir, 'index.html'), htmlOut)
         },
       },
