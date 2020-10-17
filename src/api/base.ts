@@ -4,7 +4,7 @@ import { HTTPMethod } from '@/utils/http-method'
 import { CancellablePromise } from '@/utils/cancellable-promise'
 
 type QueryParams =
-  | { [key: string]: string | number | undefined }
+  | { [key: string]: string | number | undefined | boolean }
   | null
   | undefined
 
@@ -15,6 +15,10 @@ const qs = (q: QueryParams) => {
     .map(([key, val]) => `${key}=${val}`)
     .join('&')
   return v ? `?${v}` : ''
+}
+
+interface ErrorData {
+  error: string
 }
 
 export const request = <Expected>(
@@ -40,13 +44,21 @@ export const request = <Expected>(
 
     const parsed =
       resp.headers.get('Content-Type') === 'application/json' && text !== ''
-        ? (JSON.parse(text) as Expected)
-        : ((text as unknown) as Expected)
+        ? (JSON.parse(text) as Expected | ErrorData)
+        : ((text as unknown) as Expected | ErrorData)
 
     if (resp.ok) {
-      return parsed
+      return parsed as Expected
     }
     if (resp.status === 401) removeAccessToken()
 
-    throw new Error('error' in parsed ? (parsed as any).error : parsed)
+    if (typeof parsed === 'string') {
+      // eslint-disable-next-line caleb/unicorn/prefer-type-error
+      throw new Error(parsed)
+    }
+
+    const error = new Error((parsed as ErrorData).error)
+    Object.assign(error, parsed)
+
+    throw error
   })

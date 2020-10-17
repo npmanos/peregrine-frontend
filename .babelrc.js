@@ -1,7 +1,7 @@
 module.exports = {
   presets: [
     ['linaria-preact/babel', { evaluate: true }],
-    ['@babel/preset-typescript', { jsxPragma: 'h' }],
+    '@babel/preset-typescript',
   ],
   plugins: [
     process.env.NODE_ENV !== 'production' &&
@@ -9,7 +9,7 @@ module.exports = {
       '@babel/plugin-transform-react-jsx-source',
     process.env.NODE_ENV !== 'production' &&
       process.env.NODE_ENV !== 'test' &&
-      'react-refresh/babel',
+      '@prefresh/babel-plugin',
     ['const-enum', { transform: 'constObject' }], // for TS const enum which babel ts doesn't support natively. See https://github.com/babel/babel/issues/8741
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-proposal-nullish-coalescing-operator', { loose: true }],
@@ -18,7 +18,8 @@ module.exports = {
     [
       '@babel/transform-react-jsx',
       {
-        pragma: 'h',
+        runtime: 'automatic',
+        importSource: 'preact',
         useBuiltIns: true, // object.assign instead of _extends
       },
     ],

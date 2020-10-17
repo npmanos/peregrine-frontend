@@ -1,5 +1,4 @@
 /* eslint-disable max-nested-callbacks */
-import { h } from 'preact'
 import Page from '@/components/page'
 import { useEventInfo } from '@/cache/event-info/use'
 import { css } from 'linaria'
@@ -37,6 +36,7 @@ const EventTeamComments = ({ eventKey, teamNum }: Props) => {
   const commentsByMatch = reports?.reduce<{ [matchKey: string]: GetReport[] }>(
     (acc, report) => {
       if (report.comment) {
+        // eslint-disable-next-line caleb/@typescript-eslint/no-unnecessary-condition
         ;(acc[report.matchKey] || (acc[report.matchKey] = [])).push(report)
       }
       return acc
