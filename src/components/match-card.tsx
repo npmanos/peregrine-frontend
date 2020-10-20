@@ -5,6 +5,7 @@ import Card from '@/components/card'
 import { css } from 'linaria'
 import { memo } from '@/utils/memo'
 import clsx from 'clsx'
+import { blue, red, textGrey } from '@/colors'
 
 interface MatchCardProps {
   match: {
@@ -31,7 +32,7 @@ const matchCardStyle = css`
     grid-row: span 2;
     place-self: center end;
     font-size: 0.85rem;
-    color: var(--grey-text);
+    color: ${textGrey};
     white-space: nowrap;
     text-overflow: ellipsis;
   }
@@ -53,7 +54,7 @@ const matchNumStyle = css`
   font-weight: normal;
   font-size: 0.8rem;
   font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-  color: var(--grey-text);
+  color: ${textGrey};
 `
 
 const allianceStyle = css`
@@ -75,11 +76,11 @@ const allianceStyle = css`
 `
 
 const redStyle = css`
-  background-color: var(--alliance-red);
+  background-color: ${red};
 `
 
 const blueStyle = css`
-  background-color: var(--alliance-blue);
+  background-color: ${blue};
 `
 
 export const MatchCard = memo(

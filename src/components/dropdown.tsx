@@ -2,12 +2,13 @@ import { css } from 'linaria'
 import clsx from 'clsx'
 import { createShadow } from '@/utils/create-shadow'
 import { SetRequired } from 'type-fest'
+import { offBlack } from '@/colors'
 
 const dropdownStyle = css`
   background: transparent;
   border: none;
   font-size: 0.8rem;
-  color: var(--off-black);
+  color: ${offBlack};
   font-weight: bold;
 
   & option {

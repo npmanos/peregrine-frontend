@@ -1,7 +1,13 @@
-import { styled } from 'linaria-styled-preact'
+import { PropsOf } from '@/type-utils'
+import clsx from 'clsx'
+import { css } from 'linaria'
 
-export const UnstyledList = styled.ul`
+const unstyledListStyle = css`
   padding: 0;
   margin: 0;
   list-style-type: none;
 `
+
+export const UnstyledList = (props: PropsOf<'ul'>) => (
+  <ul {...props} class={clsx(props.class, unstyledListStyle)} />
+)

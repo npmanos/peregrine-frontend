@@ -1,3 +1,4 @@
+import { focusRing } from '@/colors'
 import { css } from 'linaria'
 
 const outer = css`
@@ -10,7 +11,7 @@ const outer = css`
 
   &:focus-within,
   &:active {
-    box-shadow: 0 0 0px 4px var(--focus-ring);
+    box-shadow: 0 0 0px 4px ${focusRing};
   }
 `
 

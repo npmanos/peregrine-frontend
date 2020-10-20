@@ -1,6 +1,8 @@
 import { Merge } from '@/type-utils'
 import { InnerTextInput } from '../text-input'
 import { css } from 'linaria'
+import { lighten } from 'polished'
+import { focusRing } from '@/colors'
 
 type Props = Merge<
   JSX.HTMLAttributes,
@@ -12,13 +14,14 @@ type Props = Merge<
   }
 >
 
+const bg = '#00000022'
+
 const numberInputStyle = css`
   display: flex;
   align-items: center;
 
   & > button {
-    --bg: #00000022;
-    background: var(--bg);
+    background: ${bg};
     border: none;
     border-radius: 9in;
     height: 1.7rem;
@@ -40,11 +43,11 @@ const numberInputStyle = css`
     }
 
     &:hover {
-      background: color-mod(var(--bg) lightness(+30%));
+      background: ${lighten(0.3, bg)};
     }
 
     &:focus {
-      box-shadow: 0 0 0 3px var(--focus-ring);
+      box-shadow: 0 0 0 3px ${focusRing};
     }
   }
 

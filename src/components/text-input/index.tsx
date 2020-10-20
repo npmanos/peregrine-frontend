@@ -2,6 +2,7 @@ import { Merge, PropsOf } from '@/type-utils'
 import { css } from 'linaria'
 import clsx from 'clsx'
 import { useState } from 'preact/hooks'
+import { pigmicePurple } from '@/colors'
 
 const hasFocusedClass = css``
 
@@ -18,7 +19,7 @@ const innerClass = css`
   font-family: inherit;
 
   &:focus {
-    border-bottom-color: var(--pigmice-purple);
+    border-bottom-color: ${pigmicePurple};
     outline: none;
   }
 

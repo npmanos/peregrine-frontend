@@ -1,6 +1,9 @@
 import { css } from 'linaria'
 import { useEffect, useState } from 'preact/hooks'
 
+const zoomTiming = '1.5s'
+const zoomOffset = '0.75s'
+
 const spinnerStyle = css`
   width: 7rem;
   height: 7rem;
@@ -8,9 +11,6 @@ const spinnerStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  --zoom-timing: 1.5s;
-  --zoom-offset: 0.75s;
 
   &::before,
   &::after {
@@ -24,14 +24,13 @@ const spinnerStyle = css`
     height: 1.2rem;
   }
   &::before {
-    animation: change-color 4s infinite,
-      zoom linear var(--zoom-timing) infinite 0s,
-      fadeout var(--zoom-timing) infinite 0s;
+    animation: change-color 4s infinite, zoom linear ${zoomTiming} infinite 0s,
+      fadeout ${zoomTiming} infinite 0s;
   }
   &::after {
     animation: change-color 4s infinite,
-      zoom linear var(--zoom-timing) infinite var(--zoom-offset),
-      fadeout var(--zoom-timing) infinite var(--zoom-offset);
+      zoom linear ${zoomTiming} infinite ${zoomOffset} fadeout ${zoomTiming}
+        infinite ${zoomOffset};
   }
 
   @keyframes change-color {

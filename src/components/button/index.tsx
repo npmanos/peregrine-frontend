@@ -1,8 +1,8 @@
 import { VNode } from 'preact'
 import clsx from 'clsx'
 import { css } from 'linaria'
-import { tint } from 'polished'
-import { pigmicePurple } from '@/colors'
+import { lighten, tint } from 'polished'
+import { focusRing, pigmicePurple } from '@/colors'
 import { PropsOf } from '@/type-utils'
 
 export const buttonFontStyle = css`
@@ -16,7 +16,7 @@ const buttonStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--pigmice-purple);
+  background: ${pigmicePurple};
   border: none;
   padding: 0.6rem 0.7rem;
   border-radius: 0.2rem;
@@ -28,7 +28,7 @@ const buttonStyle = css`
 
   &:hover,
   &:focus {
-    background: color-mod(var(--pigmice-purple) lightness(+5%));
+    background: ${lighten(0.05, pigmicePurple)};
   }
 
   &:hover {
@@ -36,7 +36,7 @@ const buttonStyle = css`
   }
 
   &:focus {
-    box-shadow: 0 0 2px 4px var(--focus-ring);
+    box-shadow: 0 0 2px 4px ${focusRing};
     outline: none;
   }
 

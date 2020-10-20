@@ -4,14 +4,14 @@ import Icon from '@/components/icon'
 import { css } from 'linaria'
 import clsx from 'clsx'
 import { grey } from '@/colors'
+import { transparentize } from 'polished'
 
 const iconButtonStyle = css`
   cursor: pointer;
   transition: all 0.1s ease;
   border-radius: 50%;
-  --side: 2.5rem;
-  width: var(--side);
-  height: var(--side);
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +22,7 @@ const iconButtonStyle = css`
 
   &:hover,
   &:focus {
-    background: color-mod(#aaa alpha(25%));
+    background: ${transparentize(0.75, '#aaa')};
     outline: none;
   }
 

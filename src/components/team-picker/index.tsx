@@ -1,6 +1,7 @@
 import { formatTeamNumber } from '@/utils/format-team-number'
 import { css } from 'linaria'
 import clsx from 'clsx'
+import { blue, focusRing, red } from '@/colors'
 
 interface Props {
   redAlliance: string[]
@@ -84,7 +85,7 @@ const teamPickerStyle = css`
 const editableTeamPickerStyle = css`
   &:focus-within,
   &:active {
-    box-shadow: 0 0 0px 4px var(--focus-ring);
+    box-shadow: 0 0 0px 4px ${focusRing};
   }
 `
 
@@ -94,11 +95,11 @@ const allianceStyle = css`
 `
 
 const redStyle = css`
-  background-color: var(--alliance-red);
+  background-color: ${red};
 `
 
 const blueStyle = css`
-  background-color: var(--alliance-blue);
+  background-color: ${blue};
 `
 
 const TeamPicker = ({
