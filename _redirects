@@ -1,2 +1,2 @@
-/api/*  https://scouting.api.manos.tech/:splat 200!
+/api/*  http://scouting.api.manos.tech/:splat 200!
 /* /index.html 200
