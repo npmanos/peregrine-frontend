@@ -1,3 +1,2 @@
-/api/*  https://api.peregrine.ga/:splat 200!
-https://pgrn.ga/* https://peregrine.ga/:splat
+/api/*  https://scouting.api.manos.tech/:splat 200!
 /* /index.html 200
